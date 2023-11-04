@@ -119,8 +119,6 @@ function handleAddToCart(id,price) {
     //     placeAdd.append(html);
     //   }
     placeAdd.appendChild(html);
-    updateTotal();
-    storage();
    
 }
   
@@ -131,15 +129,12 @@ function handleAddToCart(id,price) {
     var amount = parseInt(item.querySelector(".display-amount").innerHTML);
     amount++;
     item.querySelector(".display-amount").innerHTML = amount;
-    total += parseFloat(item.querySelector('.cart-price').innerHTML);
     
     const span = document.querySelector(".cardTitleAmount")
     const temp = parseFloat(span.textContent.replace("$", ""))
     
     span.textContent = (temp + parseFloat(price)).toFixed(2);
     span.textContent = "$" + span.textContent;
-    storage();
-    updateTotal()
   }
   
   
@@ -151,7 +146,6 @@ function handleAddToCart(id,price) {
   
     if (amount == 1) {
       item.querySelector(".display-amount").innerHTML = '0';
-      total -= parseFloat(item.querySelector('.cart-price').innerHTML);
       item.remove();
       // if (document.querySelector('.cart-item')==null) 
       //   {document.querySelector('#list-carts').innerHTML = 'Your cart is empty';}
@@ -159,7 +153,7 @@ function handleAddToCart(id,price) {
     } else {
       amount--;
       item.querySelector(".display-amount").innerHTML = amount;
-      total -= parseFloat(item.querySelector('.cart-price').innerHTML);
+
     }
    
     const span = document.querySelector(".cardTitleAmount")
@@ -175,8 +169,6 @@ function handleAddToCart(id,price) {
     console.log(empty22);
     empty22.style.display = "block";
     }
-    storage();
-    updateTotal();
   }
   
 
@@ -184,9 +176,6 @@ function handleAddToCart(id,price) {
 function handleDeleteItem(id,price){
     var item = document.querySelector('.cart-item-'+id);
     var amount = parseInt(item.querySelector(".display-amount").innerHTML);
-    tmp = parseFloat(item.querySelector('.cart-price').innerHTML);
-    total -= (tmp * amount);
-    console.log(total);
     const span = document.querySelector(".cardTitleAmount")
     const temp = parseFloat(span.textContent.replace("$", ""))
     
@@ -207,7 +196,6 @@ function handleDeleteItem(id,price){
     }
     
     changeStatus(id);
-    updateTotal();
   }
   
 
